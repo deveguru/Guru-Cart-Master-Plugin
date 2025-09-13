@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Guru Cart Master
  * Plugin URI:  https://github.com/deveguru
- * Description: یک سیستم جامع برای ایجاد، گروه‌بندی و نمایش کارت‌های محتوایی پیشرفته با قابلیت استایل‌دهی کامل و نمایش به صورت گرید یا کاروسل.
- * Version:     4.1.0
+ * Description: A comprehensive system for creating, grouping, and displaying advanced content cards with full styling capabilities, viewable as a grid or carousel.
+ * Version:     4.2.0
  * Author:      Alireza Fatemi
  * Author URI:  https://alirezafatemi.ir
  * Text Domain: guru-cart-master
@@ -58,7 +58,7 @@ class GuruCartMaster {
             padding varchar(50) DEFAULT '20px',
             border_radius varchar(50) DEFAULT '10px',
             box_shadow varchar(100) DEFAULT '0 4px 6px rgba(0,0,0,0.1)',
-            text_align varchar(20) DEFAULT 'right',
+            text_align varchar(20) DEFAULT 'left',
             created_at datetime DEFAULT CURRENT_TIMESTAMP,
             PRIMARY KEY (id)
         ) $charset_collate;";
@@ -93,7 +93,7 @@ class GuruCartMaster {
     }
 
     public function admin_menu() {
-        add_menu_page('کارت های گورو', 'کارت های گورو', 'manage_options', 'guru-cart-master',
+        add_menu_page('Guru Carts', 'Guru Carts', 'manage_options', 'guru-cart-master',
             array($this, 'admin_page'), 'dashicons-pressthis', 30);
     }
 
@@ -111,7 +111,7 @@ class GuruCartMaster {
     }
 
     private function get_base_styles() {
-        return '.gcm-card-container{font-family:Vazir,Tahoma,sans-serif;direction:rtl;margin:10px 0;width:100%;box-sizing:border-box}.gcm-card-container img{max-width:100%;height:auto;display:block}.gcm-card-container h3{margin:10px 0;font-size:1.2em;font-weight:700}.gcm-card-container a{text-decoration:none;transition:color .3s}.gcm-card-container p{line-height:1.6;margin:10px 0}.gcm-social-icons{display:flex;gap:10px;margin-top:15px}.gcm-social-icons a{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;border-radius:50%;background:#f0f0f0;transition:all .3s ease}.gcm-social-icons a:hover{transform:translateY(-2px)}.gcm-social-icons i{font-size:16px}.gcm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;align-items:stretch}.gcm-grid .gcm-card-container{margin:0}.gcm-card{display:flex;flex-direction:column;height:100%}.gcm-card .card-content{flex-grow:1}.gcm-carousel{position:relative;padding:0 40px}.gcm-carousel .swiper-slide{height:auto}.gcm-carousel .swiper-button-next,.gcm-carousel .swiper-button-prev{color:#333}.gcm-card.style-classic .card-image{position:relative;overflow:hidden;flex-shrink:0}.gcm-card.style-classic .card-image img{width:100%;height:100%;object-fit:cover}.gcm-card.style-classic .card-badge{position:absolute;top:10px;right:10px;color:#fff;padding:5px 10px;border-radius:15px;font-size:12px;font-weight:700}.gcm-card.style-modern .card-image{position:relative;overflow:hidden;border-radius:inherit;flex-shrink:0}.gcm-card.style-modern .card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}.gcm-card.style-modern:hover .card-image img{transform:scale(1.1)}.gcm-card.style-modern .card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}.gcm-card.style-profile{text-align:center}.gcm-card.style-profile .profile-image{width:120px;height:120px;margin:0 auto 20px;border-radius:50%;overflow:hidden;border:4px solid #f0f0f0;flex-shrink:0}.gcm-card.style-profile .gcm-social-icons{justify-content:center}';
+        return '.gcm-card-container{font-family:inherit;margin:10px 0;width:100%;box-sizing:border-box}.gcm-card-container img{max-width:100%;height:auto;display:block}.gcm-card-container h3{margin:10px 0;font-size:1.2em;font-weight:700}.gcm-card-container a{text-decoration:none;transition:color .3s}.gcm-card-container p{line-height:1.6;margin:10px 0}.gcm-social-icons{display:flex;gap:10px;margin-top:15px}.gcm-social-icons a{display:inline-flex;align-items:center;justify-content:center;width:35px;height:35px;border-radius:50%;background:#f0f0f0;transition:all .3s ease}.gcm-social-icons a:hover{transform:translateY(-2px)}.gcm-social-icons i{font-size:16px}.gcm-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;align-items:stretch}.gcm-grid .gcm-card-container{margin:0}.gcm-card{display:flex;flex-direction:column;height:100%}.gcm-card .card-content{flex-grow:1}.gcm-carousel{position:relative;padding:0 40px}.gcm-carousel .swiper-slide{height:auto}.gcm-carousel .swiper-button-next,.gcm-carousel .swiper-button-prev{color:#333}.gcm-card.style-classic .card-image{position:relative;overflow:hidden;flex-shrink:0}.gcm-card.style-classic .card-image img{width:100%;height:100%;object-fit:cover}.gcm-card.style-classic .card-badge{position:absolute;top:10px;right:10px;color:#fff;padding:5px 10px;border-radius:15px;font-size:12px;font-weight:700}.gcm-card.style-modern .card-image{position:relative;overflow:hidden;border-radius:inherit;flex-shrink:0}.gcm-card.style-modern .card-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}.gcm-card.style-modern:hover .card-image img{transform:scale(1.1)}.gcm-card.style-modern .card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),transparent)}.gcm-card.style-profile{text-align:center}.gcm-card.style-profile .profile-image{width:120px;height:120px;margin:0 auto 20px;border-radius:50%;overflow:hidden;border:4px solid #f0f0f0;flex-shrink:0}.gcm-card.style-profile .gcm-social-icons{justify-content:center}';
     }
 
     public function admin_page() {
@@ -122,62 +122,62 @@ class GuruCartMaster {
     $all_groups = $wpdb->get_results("SELECT id, name FROM $groups_table ORDER BY name ASC");
     ?>
     <div class="wrap gcm-admin-wrap">
-        <h1>مدیریت کارت های گورو (Guru Cart Master)</h1>
+        <h1>Guru Cart Master Management</h1>
         <h2 class="nav-tab-wrapper">
-            <a href="#cards" class="nav-tab nav-tab-active">مدیریت کارت‌ها</a>
-            <a href="#groups" class="nav-tab">مدیریت گروه‌ها</a>
-            <a href="#shortcodes" class="nav-tab">راهنمای شورتکدها</a>
+            <a href="#cards" class="nav-tab nav-tab-active">Manage Cards</a>
+            <a href="#groups" class="nav-tab">Manage Groups</a>
+            <a href="#shortcodes" class="nav-tab">Shortcode Guide</a>
         </h2>
         <div id="cards" class="gcm-tab-content active">
             <div class="gcm-container">
                 <div class="gcm-form-section">
-                    <h3>افزودن / ویرایش کارت</h3>
+                    <h3>Add / Edit Card</h3>
                     <form id="gcm-card-form">
                         <input type="hidden" id="gcm-card-id" value="">
-                        <h4>محتوای کارت</h4>
-                        <p><label>عنوان: <input type="text" id="gcm-title" class="widefat" required></label></p>
-                        <p><label>توضیحات: <textarea id="gcm-description" class="widefat" rows="4"></textarea></label></p>
-                        <p><label>URL تصویر: <input type="text" id="gcm-image-url" class="widefat" required><button type="button" class="button gcm-upload-btn">انتخاب تصویر</button></label></p>
-                        <p><label>لینک کارت: <input type="url" id="gcm-link-url" class="widefat" required></label></p>
-                        <p><label>برچسب (اختیاری): <input type="text" id="gcm-badge" class="widefat"></label></p>
-                        <p><label>استایل پایه: 
+                        <h4>Card Content</h4>
+                        <p><label>Title: <input type="text" id="gcm-title" class="widefat" required></label></p>
+                        <p><label>Description: <textarea id="gcm-description" class="widefat" rows="4"></textarea></label></p>
+                        <p><label>Image URL: <input type="text" id="gcm-image-url" class="widefat" required><button type="button" class="button gcm-upload-btn">Select Image</button></label></p>
+                        <p><label>Card Link: <input type="url" id="gcm-link-url" class="widefat" required></label></p>
+                        <p><label>Badge (Optional): <input type="text" id="gcm-badge" class="widefat"></label></p>
+                        <p><label>Base Style: 
                             <select id="gcm-card-style">
-                                <option value="classic">کلاسیک</option>
-                                <option value="modern">مدرن</option>
-                                <option value="profile">پروفایل</option>
+                                <option value="classic">Classic</option>
+                                <option value="modern">Modern</option>
+                                <option value="profile">Profile</option>
                             </select>
                         </label></p>
-                        <h4>لینک‌های اجتماعی</h4>
-                        <p><label>واتساپ: <input type="url" id="gcm-whatsapp" class="widefat"></label></p>
-                        <p><label>اینستاگرام: <input type="url" id="gcm-instagram" class="widefat"></label></p>
-                        <p><label>تلگرام: <input type="url" id="gcm-telegram" class="widefat"></label></p>
-                        <h4>استایل و چیدمان</h4>
-                        <p><label>ارتفاع کارت: <input type="text" id="gcm-height" value="auto" placeholder="auto یا 450px"></label></p>
-                        <p><label>ارتفاع تصویر: <input type="text" id="gcm-image-height" value="200px" placeholder="200px یا auto"></label></p>
-                        <p>رنگ پس‌زمینه: <label><input type="color" id="gcm-bg-color-1" value="#ffffff"> (برای گرادیان: <input type="color" id="gcm-bg-color-2">)</label></p>
-                        <p>رنگ‌ها: <label>اصلی <input type="color" id="gcm-primary-color" value="#007cba"></label> <label>ثانویه <input type="color" id="gcm-secondary-color" value="#ff6b6b"></label> <label>متن <input type="color" id="gcm-text-color" value="#333333"></label></p>
-                        <p><label>فاصله داخلی (Padding): <input type="text" id="gcm-padding" value="20px" placeholder="20px"></label></p>
-                        <p><label>گردی گوشه‌ها (Border Radius): <input type="text" id="gcm-border-radius" value="10px" placeholder="10px"></label></p>
-                        <p><label>سایه (Box Shadow): <input type="text" id="gcm-box-shadow" class="widefat" value="0 4px 6px rgba(0,0,0,0.1)" placeholder="0 5px 15px rgba(0,0,0,0.2)"></label></p>
-                        <p><label>چینش متن: <select id="gcm-text-align"><option value="right">راست</option><option value="center">وسط</option><option value="left">چپ</option></select></label></p>
+                        <h4>Social Links</h4>
+                        <p><label>WhatsApp: <input type="url" id="gcm-whatsapp" class="widefat"></label></p>
+                        <p><label>Instagram: <input type="url" id="gcm-instagram" class="widefat"></label></p>
+                        <p><label>Telegram: <input type="url" id="gcm-telegram" class="widefat"></label></p>
+                        <h4>Style & Layout</h4>
+                        <p><label>Card Height: <input type="text" id="gcm-height" value="auto" placeholder="e.g., auto or 450px"></label></p>
+                        <p><label>Image Height: <input type="text" id="gcm-image-height" value="200px" placeholder="e.g., 200px or auto"></label></p>
+                        <p>Background Color: <label><input type="color" id="gcm-bg-color-1" value="#ffffff"> (Gradient: <input type="color" id="gcm-bg-color-2">)</label></p>
+                        <p>Colors: <label>Primary <input type="color" id="gcm-primary-color" value="#007cba"></label> <label>Secondary <input type="color" id="gcm-secondary-color" value="#ff6b6b"></label> <label>Text <input type="color" id="gcm-text-color" value="#333333"></label></p>
+                        <p><label>Padding: <input type="text" id="gcm-padding" value="20px" placeholder="e.g., 20px"></label></p>
+                        <p><label>Border Radius: <input type="text" id="gcm-border-radius" value="10px" placeholder="e.g., 10px"></label></p>
+                        <p><label>Box Shadow: <input type="text" id="gcm-box-shadow" class="widefat" value="0 4px 6px rgba(0,0,0,0.1)" placeholder="e.g., 0 5px 15px rgba(0,0,0,0.2)"></label></p>
+                        <p><label>Text Align: <select id="gcm-text-align"><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></label></p>
                         <p class="submit">
-                            <button type="submit" class="button-primary">ذخیره کارت</button>
-                            <button type="button" class="button" id="gcm-reset-card-form">فرم جدید</button>
+                            <button type="submit" class="button-primary">Save Card</button>
+                            <button type="button" class="button" id="gcm-reset-card-form">New Form</button>
                         </p>
                     </form>
                 </div>
                 <div class="gcm-list-section">
-                    <h3>لیست کارت‌ها</h3>
+                    <h3>Card List</h3>
                     <table class="wp-list-table widefat fixed striped">
-                        <thead><tr><th>عنوان</th><th>شورتکد</th><th>عملیات</th></tr></thead>
+                        <thead><tr><th>Title</th><th>Shortcode</th><th>Actions</th></tr></thead>
                         <tbody id="gcm-cards-tbody">
                         <?php foreach($all_cards as $card): ?>
                             <tr data-card-id="<?php echo esc_attr($card->id); ?>">
                                 <td><?php echo esc_html($card->title); ?></td>
                                 <td><code>[guru_card id="<?php echo esc_attr($card->id); ?>"]</code></td>
                                 <td>
-                                    <button class="button gcm-edit-card-btn">ویرایش</button>
-                                    <button class="button button-danger gcm-delete-card-btn">حذف</button>
+                                    <button class="button gcm-edit-card-btn">Edit</button>
+                                    <button class="button button-danger gcm-delete-card-btn">Delete</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -189,36 +189,36 @@ class GuruCartMaster {
         <div id="groups" class="gcm-tab-content">
             <div class="gcm-container">
                 <div class="gcm-form-section">
-                    <h3>افزودن / ویرایش گروه</h3>
+                    <h3>Add / Edit Group</h3>
                     <form id="gcm-group-form">
                         <input type="hidden" id="gcm-group-id" value="">
-                        <h4>تنظیمات اصلی گروه</h4>
-                        <p><label>نام گروه: <input type="text" id="gcm-group-name" class="widefat" required></label></p>
-                        <h4>کارت‌های عضو گروه</h4>
+                        <h4>Main Group Settings</h4>
+                        <p><label>Group Name: <input type="text" id="gcm-group-name" class="widefat" required></label></p>
+                        <h4>Cards in Group</h4>
                         <div id="gcm-group-cards-checklist" class="gcm-checklist">
                             <?php foreach($all_cards as $card): ?>
                                 <label><input type="checkbox" value="<?php echo esc_attr($card->id); ?>"> <?php echo esc_html($card->title); ?></label>
                             <?php endforeach; ?>
                         </div>
-                        <h4>استایل یکپارچه گروه (اختیاری - جایگزین استایل کارت‌ها می‌شود)</h4>
-                        <p><label>یکسان‌سازی ارتفاع کارت‌ها: <input type="text" id="gcm-group-height" placeholder="auto یا 450px"></label></p>
-                        <p><label>یکسان‌سازی ارتفاع تصویرها: <input type="text" id="gcm-group-image-height" placeholder="200px یا auto"></label></p>
-                        <p>رنگ پس‌زمینه: <label><input type="color" id="gcm-group-bg-color-1"> (گرادیان: <input type="color" id="gcm-group-bg-color-2">)</label></p>
-                        <p>رنگ‌ها: <label>اصلی <input type="color" id="gcm-group-primary-color"></label> <label>ثانویه <input type="color" id="gcm-group-secondary-color"></label> <label>متن <input type="color" id="gcm-group-text-color"></label></p>
-                        <p><label>فاصله داخلی (Padding): <input type="text" id="gcm-group-padding" placeholder="20px"></label></p>
-                        <p><label>گردی گوشه‌ها (Border Radius): <input type="text" id="gcm-group-border-radius" placeholder="10px"></label></p>
-                        <p><label>سایه (Box Shadow): <input type="text" id="gcm-group-box-shadow" class="widefat" placeholder="0 5px 15px rgba(0,0,0,0.2)"></label></p>
-                        <p><label>چینش متن: <select id="gcm-group-text-align"><option value="">پیش‌فرض کارت</option><option value="right">راست</option><option value="center">وسط</option><option value="left">چپ</option></select></label></p>
+                        <h4>Unified Group Style (Optional - Overrides individual card styles)</h4>
+                        <p><label>Uniform Card Height: <input type="text" id="gcm-group-height" placeholder="e.g., auto or 450px"></label></p>
+                        <p><label>Uniform Image Height: <input type="text" id="gcm-group-image-height" placeholder="e.g., 200px or auto"></label></p>
+                        <p>Background Color: <label><input type="color" id="gcm-group-bg-color-1"> (Gradient: <input type="color" id="gcm-group-bg-color-2">)</label></p>
+                        <p>Colors: <label>Primary <input type="color" id="gcm-group-primary-color"></label> <label>Secondary <input type="color" id="gcm-group-secondary-color"></label> <label>Text <input type="color" id="gcm-group-text-color"></label></p>
+                        <p><label>Padding: <input type="text" id="gcm-group-padding" placeholder="e.g., 20px"></label></p>
+                        <p><label>Border Radius: <input type="text" id="gcm-group-border-radius" placeholder="e.g., 10px"></label></p>
+                        <p><label>Box Shadow: <input type="text" id="gcm-group-box-shadow" class="widefat" placeholder="e.g., 0 5px 15px rgba(0,0,0,0.2)"></label></p>
+                        <p><label>Text Align: <select id="gcm-group-text-align"><option value="">Card Default</option><option value="left">Left</option><option value="center">Center</option><option value="right">Right</option></select></label></p>
                          <p class="submit">
-                            <button type="submit" class="button-primary">ذخیره گروه</button>
-                            <button type="button" class="button" id="gcm-reset-group-form">فرم جدید</button>
+                            <button type="submit" class="button-primary">Save Group</button>
+                            <button type="button" class="button" id="gcm-reset-group-form">New Form</button>
                         </p>
                     </form>
                 </div>
                 <div class="gcm-list-section">
-                    <h3>لیست گروه‌ها</h3>
+                    <h3>Group List</h3>
                     <table class="wp-list-table widefat fixed striped">
-                        <thead><tr><th>نام گروه</th><th>شورتکدها</th><th>عملیات</th></tr></thead>
+                        <thead><tr><th>Group Name</th><th>Shortcodes</th><th>Actions</th></tr></thead>
                         <tbody id="gcm-groups-tbody">
                             <?php foreach($all_groups as $group): ?>
                             <tr data-group-id="<?php echo esc_attr($group->id); ?>">
@@ -228,8 +228,8 @@ class GuruCartMaster {
                                     <code>[guru_card_group id="<?php echo esc_attr($group->id); ?>" display="carousel"]</code>
                                 </td>
                                 <td>
-                                    <button class="button gcm-edit-group-btn">ویرایش</button>
-                                    <button class="button button-danger gcm-delete-group-btn">حذف</button>
+                                    <button class="button gcm-edit-group-btn">Edit</button>
+                                    <button class="button button-danger gcm-delete-group-btn">Delete</button>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -239,18 +239,18 @@ class GuruCartMaster {
             </div>
         </div>
         <div id="shortcodes" class="gcm-tab-content">
-            <h3>راهنمای استفاده از شورتکدها</h3>
-            <p>برای نمایش یک کارت به تنهایی، از شورتکد زیر در هر نوشته یا برگه‌ای استفاده کنید و <code>id</code> آن را با شناسه کارت مورد نظر جایگزین کنید:</p>
+            <h3>How to Use Shortcodes</h3>
+            <p>To display a single card, use the following shortcode in any post or page, replacing <code>id</code> with the ID of your card:</p>
             <code>[guru_card id="1"]</code>
             <hr>
-            <p>برای نمایش یک گروه از کارت‌ها، از شورتکد گروه استفاده کنید. این شورتکد دو حالت نمایش دارد:</p>
-            <h4>1. نمایش گرید (Grid)</h4>
-            <p>این حالت پیش‌فرض است و کارت‌ها را به صورت یک شبکه واکنش‌گرا نمایش می‌دهد:</p>
+            <p>To display a group of cards, use the group shortcode. It has two display modes:</p>
+            <h4>1. Grid Display</h4>
+            <p>This is the default mode, which displays cards in a responsive grid layout:</p>
             <code>[guru_card_group id="1"]</code>
-            <h4>2. نمایش کاروسل (Carousel)</h4>
-            <p>برای نمایش کارت‌ها به صورت اسلایدر، پارامتر <code>display="carousel"</code> را به شورتکد اضافه کنید:</p>
+            <h4>2. Carousel Display</h4>
+            <p>To display the cards as a slider, add the <code>display="carousel"</code> parameter to the shortcode:</p>
             <code>[guru_card_group id="1" display="carousel"]</code>
-            <p><strong>توجه:</strong> برای یافتن <code>id</code> هر کارت یا گروه، به لیست آن‌ها در تب‌های مربوطه مراجعه کنید.</p>
+            <p><strong>Note:</strong> You can find the <code>id</code> for each card or group in their respective lists in the other tabs.</p>
         </div>
     </div>
     <style>
@@ -267,7 +267,7 @@ class GuruCartMaster {
         $('.nav-tab-wrapper a').on('click', function(e) { e.preventDefault(); $('.nav-tab').removeClass('nav-tab-active'); $(this).addClass('nav-tab-active'); $('.gcm-tab-content').removeClass('active'); $($(this).attr('href')).addClass('active'); });
         $('.gcm-admin-wrap').on('click', '.gcm-upload-btn', function(e) {
             e.preventDefault(); var button = $(this);
-            wp.media({ title: 'انتخاب تصویر', button: { text: 'استفاده از این تصویر' }, multiple: false }).on('select', function() { var attachment = wp.media.frame.state().get('selection').first().toJSON(); button.prev('input').val(attachment.url); }).open();
+            wp.media({ title: 'Select Image', button: { text: 'Use this image' }, multiple: false }).on('select', function() { var attachment = wp.media.frame.state().get('selection').first().toJSON(); button.prev('input').val(attachment.url); }).open();
         });
 
         $('#gcm-reset-card-form').on('click', function() {
@@ -286,7 +286,7 @@ class GuruCartMaster {
                 bg_color_1: $('#gcm-bg-color-1').val(), bg_color_2: $('#gcm-bg-color-2').val(), padding: $('#gcm-padding').val(),
                 border_radius: $('#gcm-border-radius').val(), box_shadow: $('#gcm-box-shadow').val(), text_align: $('#gcm-text-align').val(),
             };
-            $.post(ajaxurl, cardData, function(res) { if (res.success) { alert('کارت ذخیره شد!'); location.reload(); } else { alert('خطا: ' + res.data); } });
+            $.post(ajaxurl, cardData, function(res) { if (res.success) { alert('Card saved successfully!'); location.reload(); } else { alert('Error: ' + res.data); } });
         });
         $('#gcm-cards-tbody').on('click', '.gcm-edit-card-btn', function() {
             var cardId = $(this).closest('tr').data('card-id');
@@ -307,9 +307,9 @@ class GuruCartMaster {
             });
         });
         $('#gcm-cards-tbody').on('click', '.gcm-delete-card-btn', function() {
-            if (!confirm('آیا از حذف این کارت مطمئن هستید؟')) return;
+            if (!confirm('Are you sure you want to delete this card?')) return;
             var cardId = $(this).closest('tr').data('card-id');
-            $.post(ajaxurl, { action: 'gcm_delete_card', id: cardId, _nonce: '<?php echo wp_create_nonce("gcm_delete_card_nonce"); ?>' }, function(res) { if(res.success) { alert('کارت حذف شد.'); location.reload(); } else { alert('خطا: ' + res.data); } });
+            $.post(ajaxurl, { action: 'gcm_delete_card', id: cardId, _nonce: '<?php echo wp_create_nonce("gcm_delete_card_nonce"); ?>' }, function(res) { if(res.success) { alert('Card deleted.'); location.reload(); } else { alert('Error: ' + res.data); } });
         });
 
         $('#gcm-reset-group-form').on('click', function() {
@@ -328,7 +328,7 @@ class GuruCartMaster {
                 bg_color_2: $('#gcm-group-bg-color-2').val(), padding: $('#gcm-group-padding').val(), border_radius: $('#gcm-group-border-radius').val(),
                 box_shadow: $('#gcm-group-box-shadow').val(), text_align: $('#gcm-group-text-align').val(),
             };
-            $.post(ajaxurl, groupData, function(res) { if (res.success) { alert('گروه ذخیره شد!'); location.reload(); } else { alert('خطا: ' + res.data); } });
+            $.post(ajaxurl, groupData, function(res) { if (res.success) { alert('Group saved successfully!'); location.reload(); } else { alert('Error: ' + res.data); } });
         });
         $('#gcm-groups-tbody').on('click', '.gcm-edit-group-btn', function() {
             var groupId = $(this).closest('tr').data('group-id');
@@ -348,9 +348,9 @@ class GuruCartMaster {
             });
         });
         $('#gcm-groups-tbody').on('click', '.gcm-delete-group-btn', function() {
-            if (!confirm('آیا از حذف این گروه مطمئن هستید؟')) return;
+            if (!confirm('Are you sure you want to delete this group?')) return;
             var groupId = $(this).closest('tr').data('group-id');
-            $.post(ajaxurl, { action: 'gcm_delete_group', id: groupId, _nonce: '<?php echo wp_create_nonce("gcm_delete_group_nonce"); ?>' }, function(res) { if(res.success) { alert('گروه حذف شد.'); location.reload(); } else { alert('خطا: ' + res.data); } });
+            $.post(ajaxurl, { action: 'gcm_delete_group', id: groupId, _nonce: '<?php echo wp_create_nonce("gcm_delete_group_nonce"); ?>' }, function(res) { if(res.success) { alert('Group deleted.'); location.reload(); } else { alert('Error: ' + res.data); } });
         });
     });
     </script>
@@ -359,7 +359,7 @@ class GuruCartMaster {
     
     public function save_card() {
         check_ajax_referer('gcm_save_card_nonce', '_nonce');
-        if (!current_user_can('manage_options')) wp_send_json_error('عدم دسترسی');
+        if (!current_user_can('manage_options')) wp_send_json_error('Permission denied.');
         global $wpdb; $table = $wpdb->prefix . 'gcm_cards';
         $data = [
             'title' => sanitize_text_field($_POST['title']), 'description' => sanitize_textarea_field($_POST['description']),
@@ -379,15 +379,15 @@ class GuruCartMaster {
 
     public function get_card() {
         check_ajax_referer('gcm_get_card_nonce', '_nonce');
-        if (!current_user_can('manage_options')) wp_send_json_error('عدم دسترسی');
+        if (!current_user_can('manage_options')) wp_send_json_error('Permission denied.');
         global $wpdb; $id = absint($_POST['id']);
         $card = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}gcm_cards WHERE id = %d", $id));
-        if ($card) { wp_send_json_success($card); } else { wp_send_json_error('کارت یافت نشد.'); }
+        if ($card) { wp_send_json_success($card); } else { wp_send_json_error('Card not found.'); }
     }
 
     public function delete_card() {
         check_ajax_referer('gcm_delete_card_nonce', '_nonce');
-        if (!current_user_can('manage_options')) wp_send_json_error('عدم دسترسی');
+        if (!current_user_can('manage_options')) wp_send_json_error('Permission denied.');
         global $wpdb; $id = absint($_POST['id']);
         $wpdb->delete($wpdb->prefix . 'gcm_cards', ['id' => $id]);
         $wpdb->delete($wpdb->prefix . 'gcm_relationships', ['card_id' => $id]);
@@ -396,7 +396,7 @@ class GuruCartMaster {
 
     public function save_group() {
         check_ajax_referer('gcm_save_group_nonce', '_nonce');
-        if (!current_user_can('manage_options')) wp_send_json_error('عدم دسترسی');
+        if (!current_user_can('manage_options')) wp_send_json_error('Permission denied.');
         global $wpdb;
         $groups_table = $wpdb->prefix . 'gcm_groups';
         $rel_table = $wpdb->prefix . 'gcm_relationships';
@@ -420,18 +420,18 @@ class GuruCartMaster {
 
     public function get_group() {
         check_ajax_referer('gcm_get_group_nonce', '_nonce');
-        if (!current_user_can('manage_options')) wp_send_json_error('عدم دسترسی');
+        if (!current_user_can('manage_options')) wp_send_json_error('Permission denied.');
         global $wpdb; $id = absint($_POST['id']);
         $group = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$wpdb->prefix}gcm_groups WHERE id = %d", $id));
         if ($group) {
             $group->cards = $wpdb->get_col($wpdb->prepare("SELECT card_id FROM {$wpdb->prefix}gcm_relationships WHERE group_id = %d", $id));
             wp_send_json_success($group);
-        } else { wp_send_json_error('گروه یافت نشد.'); }
+        } else { wp_send_json_error('Group not found.'); }
     }
 
     public function delete_group() {
         check_ajax_referer('gcm_delete_group_nonce', '_nonce');
-        if (!current_user_can('manage_options')) wp_send_json_error('عدم دسترسی');
+        if (!current_user_can('manage_options')) wp_send_json_error('Permission denied.');
         global $wpdb; $id = absint($_POST['id']);
         $wpdb->delete($wpdb->prefix . 'gcm_groups', ['id' => $id]);
         $wpdb->delete($wpdb->prefix . 'gcm_relationships', ['group_id' => $id]);
